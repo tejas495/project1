@@ -1,0 +1,70 @@
+[2026-01-20 11:59:44] INFO -  Laptop Price Prediction package initialized
+[2026-01-20 12:00:41] INFO -  Laptop Price Prediction package initialized
+[2026-01-20 12:01:28] INFO -  Laptop Price Prediction package initialized
+[2026-01-20 12:57:06] INFO -  Laptop Price Prediction package initialized
+[2026-01-20 12:58:37] INFO -  Laptop Price Prediction package initialized
+[2026-01-20 13:02:36] INFO -  Laptop Price Prediction package initialized
+[2026-01-20 13:06:29] INFO -  Laptop Price Prediction package initialized
+[2026-01-20 13:07:32] INFO -  Laptop Price Prediction package initialized
+[2026-01-20 13:13:24] INFO -  Laptop Price Prediction package initialized
+[2026-01-20 13:13:47] INFO -  Laptop Price Prediction package initialized
+[2026-01-20 13:14:18] INFO -  Laptop Price Prediction package initialized
+[2026-01-20 13:15:06] INFO -  Laptop Price Prediction package initialized
+[2026-01-20 13:16:23] INFO -  Laptop Price Prediction package initialized
+[2026-01-20 13:19:51] INFO -  Laptop Price Prediction package initialized
+[2026-01-20 13:22:32] INFO -  Laptop Price Prediction package initialized
+[2026-01-20 13:23:29] INFO -  Laptop Price Prediction package initialized
+[2026-01-20 13:23:49] INFO -  Laptop Price Prediction package initialized
+[2026-01-21 11:17:23] INFO -  Laptop Price Prediction package initialized
+[2026-01-21 11:24:20] INFO -  Laptop Price Prediction package initialized
+[2026-01-21 11:27:40] INFO -  Laptop Price Prediction package initialized
+[2026-01-21 11:35:23] INFO -  Laptop Price Prediction package initialized
+[2026-01-21 11:39:18] INFO -  Laptop Price Prediction package initialized
+[2026-01-21 11:42:15] INFO -  Laptop Price Prediction package initialized
+[2026-01-21 11:42:50] INFO - ======== Pipeline started ========
+[2026-01-21 11:42:50] INFO - Step 1: Data ingestion
+[2026-01-21 11:42:51] INFO - Attempting to read from MySQL
+[2026-01-21 11:42:52] INFO - Read data from MySQL successfully
+[2026-01-21 11:42:52] INFO - Raw data saved at: artifacts\raw\laptop_raw.csv
+[2026-01-21 11:42:52] INFO - Step 2: Data validation (basic checks)
+[2026-01-21 11:42:52] INFO - Missing value ratios (top 10):
+{'Secondary_Storage': 0.8116, 'SKU': 0.0, 'Model': 0.0, 'Brand': 0.0, 'CPU': 0.0, 'RAM': 0.0, 'Primary_Storage': 0.0, 'GPU': 0.0, 'Screen_Size': 0.0, 'Resolution': 0.0}
+[2026-01-21 11:42:52] WARNING - Columns with > 30% missing: {'Secondary_Storage': 0.8116}
+[2026-01-21 11:42:52] INFO - Dropped high-NA columns and continuing: ['Secondary_Storage']
+[2026-01-21 11:42:52] INFO - Data validation passed (validate() ok).
+[2026-01-21 11:42:52] INFO - Saved possibly-updated raw dataframe to artifacts\raw\laptop_raw.csv
+[2026-01-21 11:42:52] INFO - Step 3: Data transformation
+[2026-01-21 11:42:52] INFO - Dropped identifier column: SKU
+[2026-01-21 11:42:52] INFO - Dropped identifier column: Model
+[2026-01-21 11:42:52] INFO - Numeric cols: ['Screen_Size', 'Weight_kg', 'Battery_Hours']
+[2026-01-21 11:42:52] INFO - Categorical cols: ['Brand', 'CPU', 'RAM', 'Primary_Storage', 'GPU', 'Resolution', 'OS', 'Type', 'Touchscreen']
+[2026-01-21 11:42:52] INFO - Fitting preprocessor on training features...
+[2026-01-21 11:42:52] INFO - Saved preprocessor to: artifacts\transformed\preprocessor.joblib
+[2026-01-21 11:42:52] INFO - Saved artifacts/transformed/train.csv and test.csv
+[2026-01-21 11:42:52] INFO - Saved artifacts/transformed/feature_list.json
+[2026-01-21 11:42:52] INFO - Transformer saved at: artifacts\transformed\preprocessor.joblib
+[2026-01-21 11:42:52] INFO - Step 4: Model training
+[2026-01-21 11:42:52] INFO - Loading transformed train/test CSVs
+[2026-01-21 11:42:52] INFO - Loading preprocessor from: artifacts\transformed\preprocessor.joblib
+[2026-01-21 11:42:52] INFO - Transforming features using preprocessor
+[2026-01-21 11:42:52] INFO - Training LinearRegression (baseline)
+[2026-01-21 11:42:52] INFO - LinearRegression evaluation -> RMSE: 8243.5040, MAE: 5749.0160, R2: 0.9650
+[2026-01-21 11:42:52] INFO - Training RandomForestRegressor
+[2026-01-21 11:42:53] INFO - RandomForest evaluation -> RMSE: 9166.6615, MAE: 6746.8086, R2: 0.9568
+[2026-01-21 11:42:53] INFO - Selected best model: LinearRegression with RMSE = 8243.5040
+[2026-01-21 11:42:53] INFO - Saved best model to: artifacts\model\best_model.joblib
+[2026-01-21 11:42:53] INFO - ModelTrainerArtifact created -> train_score: 0.9656, test_score: 0.9650
+[2026-01-21 11:42:53] INFO - Model saved at: artifacts\model\best_model.joblib
+[2026-01-21 11:42:53] INFO - Train score (R2): 0.9656  Test score (R2): 0.9650
+[2026-01-21 11:42:53] INFO - Step 5: Model evaluation
+[2026-01-21 11:42:53] INFO - Starting model evaluation...
+[2026-01-21 11:42:53] INFO - Loaded model from artifacts\model\best_model.joblib and preprocessor from artifacts\transformed\preprocessor.joblib
+[2026-01-21 11:42:53] INFO - Model Evaluation Completed \u2192 RMSE: 8243.5040, MAE: 5749.0160, R2: 0.9650
+[2026-01-21 11:42:53] INFO - Metrics saved to artifacts\model\model_metrics.json
+[2026-01-21 11:42:53] INFO - Evaluation metrics: {'RMSE': 8243.503973813784, 'MAE': 5749.0160413520925, 'R2': 0.9650240530089602}
+[2026-01-21 11:42:53] INFO - Step 6: Model pushing
+[2026-01-21 11:42:53] INFO - Pushed model version to: prediction\models\models\best_model_20260121_114253.joblib
+[2026-01-21 11:42:53] INFO - Copied new model to active path: prediction\models\models\current_model.joblib
+[2026-01-21 11:42:53] INFO - Model push info: {'versioned_path': 'prediction\\models\\models\\best_model_20260121_114253.joblib', 'active_path': 'prediction\\models\\models\\current_model.joblib'}
+[2026-01-21 11:42:53] INFO - Pipeline summary written to: artifacts\pipeline_summary.json
+[2026-01-21 11:42:53] INFO - ======== Pipeline finished successfully ========

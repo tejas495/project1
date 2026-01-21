@@ -1,0 +1,11 @@
+pandas
+numpy
+scikit-learn
+pymysql
+joblib
+flask
+notebook
+python-dotenv
+streamlit
+sqlalchemy
+pyymal
