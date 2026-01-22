@@ -9,5 +9,5 @@ notebook
 python-dotenv
 streamlit==1.32.2
 sqlalchemy
-pyymal
+pyyaml
 altair==4.2.2
